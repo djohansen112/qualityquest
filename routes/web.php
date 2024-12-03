@@ -18,7 +18,7 @@ Route::get('/about', function () {
     return view('about');
 });
 Route::get('/categories', function () {
-    return view('categories', ['placeholder' => 'categories']);
+    return view('categories', ['placeholder' => 'categories', 'posts' => Post::all()]);
 });
 Route::get('/contact', function () {
     return view('placeholder', ['placeholder' => 'contact']);

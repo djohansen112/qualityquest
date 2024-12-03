@@ -21,7 +21,7 @@
             {{-- <p>Error!</p> --}}
             {{-- <%end%> --}}
             <p class="postcategory">
-                Category: Things </p>
+                Category: {{ $post['category'] }} </p>
             {{-- <% if post.category_id.present? %> --}}
             {{-- <%= post.category.name %> --}}
             {{-- <% end %></p> --}}
