@@ -28,7 +28,7 @@
             </div>
         </div>
         <h1 style="margin-top:50px;">You're in
-            CATEGORY NAME{{-- $categories['name'] --}}
+            CATEGORY NAME{{-- {{$categories['name']}} --}}
         </h1>
         {{-- @if ($categories['post_ids'])
             {{-- if it is empty --}}
@@ -49,11 +49,11 @@
                         <a href="/posts/1">{{ $post['title'] }}</a>
                     </h1>
                     <div class="carddetail">
-                        @if ($post['draft'] == true)
+                        @if ($post['status'] == 'draft')
                             <p class="postdate">Draft</p>
-                        @elseif($post['scheduled'])
+                        @elseif($post['status'] == 'scheduled')
                             <p class="postdate">Scheduled for {{ $post['scheduled_at'] }}</p>
-                        @elseif($post['published_at'] == 'today' && !$post['scheduled_at'])
+                        @elseif($post['published_at'] && !$post['scheduled_at'])
                             <p class="postdate">Published: $post['createddate'] ago</p>
                         @else
                             <p>Error!</p>
@@ -67,7 +67,7 @@
                         </p>
                     </div>
                     <p class="postdesc">
-                        {{ $post['body'] }}
+                        {{ $post['body'] }} {{--truncated text here--}}
                         Descirption from post first 100 words
                     </p>
                 </div>

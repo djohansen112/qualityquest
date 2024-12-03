@@ -7,7 +7,7 @@
     <div class="content-container">
         <div class="content-articlecontainer">
             <div class="content-adminarea">
-                {{-- @if ($user == logged_in && $user . role == 1(admin))
+                {{-- @if ($user['status'] == logged_in && $user['role'] == 1(admin))
                     <figure out how to do this?>
                         <a href="/edit">Edit this page</a>
                 @endif --}}
@@ -33,7 +33,7 @@
                     </div>
                     <div class="contentcategory">
                         @if ($post['publisheddate'])
-                            <h3> Published: {{ $post['publisheddate'] }} ago </h3>
+                            <h3> Published: {{$post['published_at']->diffForHumans()}} ago </h3>
                         @else
                             <h3> Not published yet </h3>
                         @endif
@@ -55,7 +55,7 @@
                         @foreach ($comments as $comment)
                             <div>
                                 <div class="contentcommenter">{{ $comments['user_id'] }} commented
-                                    {{ $comment[created_at] }} ago:</div>
+                                {{$comment['created_at']->diffForHumans()}} ago:</div>
                                 <p class="commentcontent">{{ $comment['body'] }}</p>
                             </div>
                         @endforeach
@@ -83,7 +83,7 @@
                                 Popular post category
                             </span>
                             <div class="content-menupostdetail">
-                                <div class="content-menupostdate">Published: Popular post created_at
+                                <div class="content-menupostdate">Published: {{$post['created_at']->diffForHumans()}}
                                     ago</div>
                             </div>
                         </div>

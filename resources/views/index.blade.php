@@ -1,7 +1,6 @@
 @extends('layout')
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-
     <link rel="stylesheet" href="{{ asset('css/cardlist.css') }}">
 
     <div class="home-container">
@@ -13,17 +12,21 @@
             <div class="featured-post">
                 {{-- if featured image, then diesplay image, otherwise randomise --}}
                 <div class="featured-imgContainer">
-                    {{-- <% if @featured.cover_image.present? %> --}}
-                    <img src="{{ asset('images/orc_avatar.png') }}" alt="tag"
+                    @if ($featurepost['image'])
+                        <img src="{{ asset('images/orc_avatar.png') }}" alt="tag"
                         style="height:100%;width:auto;",class="postimage">
+                    @else {--random image--}
+                        <img src="{{ asset('images/orc_avatar.png') }}" alt="tag"
+                        style="height:100%;width:auto;",class="postimage">
+                    @endif
                 </div>
                 <div class="featured-textContainer">
                     {{-- get featured post as just the latest post or whatever --}}
                     <h1 class="featured-postTitle">
-                        Post Title Link
+                        {{$featurepost['title']}}
                     </h1>
                     <p class="featured-postDesc">
-                        Post description truncated
+                        {{$featurepost['body']}} {--need to truncate the body, or give another way to pull the feature post as a truncated list--}
                     </p>
                 </div>
             </div>
@@ -55,7 +58,6 @@
                 </div>
             </div>
         </div>
-        {{-- <%# CardList %> --}}
         <div class="blogcontent">
             <div class="cardListcontainer">
                 <h1 class="cardListtitle">Recent Posts</h1>
@@ -72,7 +74,6 @@
                     #PAGINATION
                 </div>
             </div>
-            {{-- <%# end cardlistcontainer%> --}}
             <x-menu />
         </div>
 

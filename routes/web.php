@@ -4,9 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 
-//Welcome, all posts
+//Welcome, all posts - need to update the fetured post to find a random rather than just one of them
 Route::get('/', function () {
-    return view('index', ['page_heading' => 'Welcome page', 'posts' => Post::all()]);
+    return view('index', ['page_heading' => 'Welcome page', 'posts' => Post::all(), 'featurepost' => Post::find(1)]);
 });
 
 //Single post only

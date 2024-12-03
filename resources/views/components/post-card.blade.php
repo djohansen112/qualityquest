@@ -10,25 +10,25 @@
                 {{ $post['title'] }}
             </a></h1>
         <div class="carddetail">
-            {{-- <% if post.draft? %> --}}
-            {{-- <p class="postdate">Draft</p> --}}
-            {{-- <% elsif post.scheduled? %> --}}
-            {{-- <p class="postdate">Scheduled for <%= post.published_at.strftime("%d-%b-%Y") %></p> --}}
-            {{-- <% elsif post.published_at.present? && !post.scheduled? %> --}}
-            <p class="postdate">Published: Some time ago</p>
-            {{-- <%= time_ago_in_words post.published_at %> --}}
-            {{-- <% else %> --}}
-            {{-- <p>Error!</p> --}}
-            {{-- <%end%> --}}
+            {-- <% if post.draft? %> --}
+            {-- <p class="postdate">Draft</p> --}
+            {-- <% elsif post.scheduled? %> --}
+            {-- <p class="postdate">Scheduled for <%= post.published_at.strftime("%d-%b-%Y") %></p> --}}
+            {-- <% elsif post.published_at.present? && !post.scheduled? %> --}
+            <p class="postdate">Published: {{$post['created_at']->diffForHumans()}} ago</p>
+            {-- @else --}
+            {-- <p>Error!</p> --}
+            {-- @endif --}
             <p class="postcategory">
-                Category: {{ $post['category'] }} </p>
-            {{-- <% if post.category_id.present? %> --}}
-            {{-- <%= post.category.name %> --}}
-            {{-- <% end %></p> --}}
+                Category: 
+            {-- @if post.category_id.present? %> --}
+                {--$post['category']--}</p>
+            {-- @else --}
+                Uncategorised </p>
+            {-- @endif --}
         </div>
         <p class="postdesc">
-            {{-- shorten to 100 words or whatever --}}
-        <p>{{ $post['body'] }}</p>
+            <p>{{ $post['bodytruncated']}}</p>
         </p>
     </div>
 </div>
